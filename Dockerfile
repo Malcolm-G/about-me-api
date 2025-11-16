@@ -1,5 +1,5 @@
 # Importing JDK and copying required files
-FROM amazoncorretto:25.0.1-al2023-jdk AS build
+FROM amazoncorretto:25.0.1-al2023 AS build
 WORKDIR /app
 COPY pom.xml .
 COPY src src
@@ -13,7 +13,7 @@ RUN chmod +x ./mvnw
 RUN ./mvnw clean package -DskipTests
 
 # Stage 2: Create the final Docker image using OpenJDK 25
-FROM amazoncorretto:25.0.1-al2023-jdk
+FROM amazoncorretto:25.0.1-al2023
 VOLUME /tmp
 
 # Copy the JAR from the build stage
